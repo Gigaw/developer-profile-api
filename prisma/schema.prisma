@@ -33,7 +33,7 @@ model Skill {
 
 model Experience {
   id           String   @id @default(cuid())
-  title        String
+  position     String
   company      String
   period       String
   achievements String[]

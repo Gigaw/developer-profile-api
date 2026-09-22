@@ -7,8 +7,8 @@ import { PrismaService } from '../prisma/prisma.service';
 @Injectable()
 export class ProfileService {
   constructor(private readonly prisma: PrismaService) {}
-  getProfile(): Profile {
-    return this.prisma.profile.findFirstorThrow({
+  async getProfile(): Promise<Profile> {
+    return this.prisma.profile.findFirstOrThrow({
       include: {
         skills: true,
         experience: true,

@@ -1,124 +1,334 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Developer Profile API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend application built with NestJS, GraphQL, Prisma, PostgreSQL and Docker.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+The API exposes information about my professional profile, skills, work experience and projects through GraphQL.
 
-## Description
+## Tech Stack
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- TypeScript
+- Node.js
+- NestJS
+- GraphQL
+- Apollo Server
+- Apollo Sandbox
+- Prisma
+- PostgreSQL
+- Docker
+- pnpm
 
-## Project setup
+## Live Demo
 
-```bash
-$ pnpm install
+GraphQL API / Apollo Sandbox:
+
+```text
+TODO: add deployed /graphql URL
 ```
 
-## Compile and run the project
+Source code:
 
-```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+```text
+TODO: add GitHub repository URL
 ```
 
-## Run tests
+## Running the Application
+
+### Requirements
+
+- Docker
+- Docker Compose
+
+### Start
+
+Clone the repository and run:
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+docker compose up --build
 ```
 
-## Deployment
+On startup the application automatically:
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+1. Starts PostgreSQL
+2. Waits until the database is ready
+3. Applies Prisma migrations
+4. Seeds the database with profile data
+5. Starts the NestJS application
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+The GraphQL API and Apollo Sandbox are available at:
+
+```text
+http://localhost:3000/graphql
+```
+
+### Stop
 
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+docker compose down
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Clean Start
 
-## Observability
-
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
-
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
-
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
-
-To add it to this project:
+To remove the database volume and verify the application from a completely clean state:
 
 ```bash
-$ pnpm install @nestjs/observe
+docker compose down -v
+docker compose up --build
 ```
 
-Then follow the [setup guide](https://docs.nestjs.com/observability/overview) - it takes a single import and an app key.
+The database will be created again, all migrations will be applied and the initial data will be seeded automatically.
 
-The free plan needs no payment details and covers 300,000 events a month. You can also browse the [live demo](https://www.observe-demo.nestjs.com/dashboard) first - the whole dashboard over a busy service's data, with nothing to install.
+## Example GraphQL Query
 
-## Resources
+```graphql
+query {
+  profile {
+    name
+    description
+    github
+    linkedin
 
-Check out a few resources that may come in handy when working with NestJS:
+    skills {
+      id
+      name
+    }
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observe](https://observe.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+    experience {
+      company
+      position
+      period
+      achievements
+    }
 
-## Support
+    projects {
+      name
+      url
+    }
+  }
+}
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Architecture
 
-## Stay in touch
+The application separates the GraphQL API layer, application logic and database access.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```text
+GraphQL Request
+      ↓
+ProfileResolver
+      ↓
+ProfileService
+      ↓
+PrismaService
+      ↓
+PostgreSQL
+```
 
-## License
+### ProfileResolver
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Handles GraphQL queries and exposes the profile API.
+
+### ProfileService
+
+Contains profile-related application logic and coordinates access to persisted data.
+
+### PrismaService
+
+Provides database access through Prisma Client.
+
+## Database Model
+
+The application stores a single professional profile with related skills, work experience and projects.
+
+```text
+Profile
+├── Skills
+├── Experience
+└── Projects
+```
+
+The relationships are modeled as one-to-many relations:
+
+```text
+Profile 1 ─── * Skill
+Profile 1 ─── * Experience
+Profile 1 ─── * Project
+```
+
+The database schema is defined in:
+
+```text
+prisma/schema.prisma
+```
+
+Database migrations are stored in:
+
+```text
+prisma/migrations/
+```
+
+## Database Initialization
+
+Initial profile data is defined separately from the seed logic:
+
+```text
+prisma/
+├── seed.ts
+└── seed-data.ts
+```
+
+`seed.ts` contains the database initialization logic.
+
+`seed-data.ts` contains the professional profile data.
+
+The seed is idempotent: if the profile already exists, it does not create duplicate data.
+
+## Project Structure
+
+```text
+src/
+├── prisma/
+│   ├── prisma.module.ts
+│   └── prisma.service.ts
+│
+├── profile/
+│   ├── models/
+│   │   ├── profile.model.ts
+│   │   ├── skill.model.ts
+│   │   ├── experience.model.ts
+│   │   └── project.model.ts
+│   │
+│   ├── profile.module.ts
+│   ├── profile.resolver.ts
+│   └── profile.service.ts
+│
+├── app.module.ts
+└── main.ts
+
+prisma/
+├── migrations/
+├── schema.prisma
+├── seed.ts
+└── seed-data.ts
+
+Dockerfile
+compose.yaml
+.env.example
+```
+
+## Local Development
+
+For development outside the application Docker container, install dependencies:
+
+```bash
+pnpm install
+```
+
+Create the local environment file:
+
+```bash
+cp .env.example .env
+```
+
+Start PostgreSQL:
+
+```bash
+docker compose up -d db
+```
+
+Apply database migrations:
+
+```bash
+pnpm exec prisma migrate dev
+```
+
+Seed the database:
+
+```bash
+pnpm exec prisma db seed
+```
+
+Start NestJS in development mode:
+
+```bash
+pnpm start:dev
+```
+
+The GraphQL API will be available at:
+
+```text
+http://localhost:3000/graphql
+```
+
+## Useful Commands
+
+### Build the application
+
+```bash
+pnpm build
+```
+
+### Generate Prisma Client
+
+```bash
+pnpm exec prisma generate
+```
+
+### Create a new migration
+
+```bash
+pnpm exec prisma migrate dev --name migration_name
+```
+
+### Run database seed
+
+```bash
+pnpm exec prisma db seed
+```
+
+### Open Prisma Studio
+
+```bash
+pnpm exec prisma studio
+```
+
+### Start Docker services
+
+```bash
+docker compose up --build
+```
+
+### Stop Docker services
+
+```bash
+docker compose down
+```
+
+### Remove Docker services and database volume
+
+```bash
+docker compose down -v
+```
+
+## Environment Variables
+
+The project uses the following environment variable:
+
+```env
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/portfolio?schema=public"
+```
+
+An example configuration is provided in:
+
+```text
+.env.example
+```
+
+The real `.env` file is excluded from Git.
+
+## Notes
+
+- GraphQL schema is generated using the NestJS code-first approach.
+- Apollo Sandbox is available through the `/graphql` endpoint.
+- Prisma migrations are applied automatically when the Docker application starts.
+- Initial database data is seeded automatically after migrations.
+- Docker Compose waits for PostgreSQL to become healthy before starting the application.
