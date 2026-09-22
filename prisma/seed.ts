@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { PrismaPg } from '@prisma/adapter-pg';
-import { PrismaClient } from '../src/generated/prisma/client';
-import { profileSeedData } from './seed-data';
+import { PrismaClient } from '../src/generated/prisma/client.js';
+import { profileSeedData } from './seed-data.js';
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL!,

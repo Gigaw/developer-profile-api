@@ -1,4 +1,4 @@
-import { Prisma } from '../src/generated/prisma/client';
+import type { Prisma } from '../src/generated/prisma/client.js';
 
 export const profileSeedData = {
   name: 'Igor Gigolaev',
@@ -6,8 +6,7 @@ export const profileSeedData = {
   description:
     'Senior React Native Engineer with 5+ years of commercial experience delivering production iOS and Android applications across healthcare, commerce, white-label platforms, and residential services. Strong background in TypeScript, application architecture, API integrations, CI/CD, native tooling, and production releases.',
 
-  // GitHub URL в резюме не указан — замени на свой.
-  github: 'REPLACE_WITH_YOUR_GITHUB_URL',
+  github: 'https://github.com/Gigaw',
 
   linkedin: 'https://www.linkedin.com/in/igor-gigolaev-803b63213',
 
@@ -90,9 +89,7 @@ export const profileSeedData = {
         company: 'Introvert',
         position: 'Junior Software Developer, JavaScript/PHP',
         period: 'Jul 2021 – Sep 2021',
-        achievements: [
-          'Maintained PHP scripts and AmoCRM widgets.',
-        ],
+        achievements: ['Maintained PHP scripts and AmoCRM widgets.'],
       },
       {
         company: 'QSOFT',

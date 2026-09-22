@@ -22,13 +22,13 @@ The API exposes information about my professional profile, skills, work experien
 GraphQL API / Apollo Sandbox:
 
 ```text
-TODO: add deployed /graphql URL
+https://developer-profile-api-22cz.onrender.com/graphql
 ```
 
 Source code:
 
 ```text
-TODO: add GitHub repository URL
+https://github.com/Gigaw/developer-profile-api
 ```
 
 ## Running the Application
