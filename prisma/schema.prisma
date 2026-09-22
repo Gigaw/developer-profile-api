@@ -6,46 +6,45 @@
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
+  moduleFormat = "cjs"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
-
 model Profile {
-  id String @id @default(cuid())
-  name String
+  id          String       @id @default(cuid())
+  name        String
   description String
-  github String
-  linkedin String
-  skills Skill[]
-  experience Experience[]
-  projects Project[]
+  github      String
+  linkedin    String
+  skills      Skill[]
+  experience  Experience[]
+  projects    Project[]
 }
 
 model Skill {
-  id String @id @default(cuid())
-  name String
+  id        String  @id @default(cuid())
+  name      String
   profileId String
-  profile Profile @relation(fields: [profileId], references: [id])
+  profile   Profile @relation(fields: [profileId], references: [id])
 }
 
 model Experience {
-  id String @id @default(cuid())
-  title String
-  company String
-  period String
+  id           String   @id @default(cuid())
+  title        String
+  company      String
+  period       String
   achievements String[]
-  profileId String
-  profile Profile @relation(fields: [profileId], references: [id])
+  profileId    String
+  profile      Profile  @relation(fields: [profileId], references: [id])
 }
 
 model Project {
-  id String @id @default(cuid())
-  name String
-  url String
+  id        String  @id @default(cuid())
+  name      String
+  url       String
   profileId String
-  profile Profile @relation(fields: [profileId], references: [id])
+  profile   Profile @relation(fields: [profileId], references: [id])
 }
-
