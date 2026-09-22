@@ -15,6 +15,7 @@ import { ProfileModule } from './profile/profile.module.js';
       driver: ApolloDriver,
       autoSchemaFile: true,
       graphiql: false,
+      includeStacktraceInErrorResponses: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     ProfileModule,

@@ -16,6 +16,7 @@ The API exposes information about my professional profile, skills, work experien
 - PostgreSQL
 - Docker
 - pnpm
+- Vitest
 
 ## Live Demo
 
@@ -180,7 +181,9 @@ prisma/
 
 `seed-data.ts` contains the professional profile data.
 
-The seed is idempotent: if the profile already exists, it does not create duplicate data.
+The seed is idempotent: it creates the profile on the first run and updates the
+existing profile and its related data on subsequent runs without creating
+duplicates.
 
 ## Project Structure
 
@@ -212,6 +215,7 @@ prisma/
 
 Dockerfile
 compose.yaml
+compose.dev.yaml
 .env.example
 ```
 
@@ -232,7 +236,7 @@ cp .env.example .env
 Start PostgreSQL:
 
 ```bash
-docker compose up -d db
+docker compose -f compose.yaml -f compose.dev.yaml up -d db
 ```
 
 Apply database migrations:

@@ -10,18 +10,39 @@ const adapter = new PrismaPg({
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const existingProfile = await prisma.profile.findFirst();
+  const existingProfile = await prisma.profile.findFirst({
+    select: { id: true },
+  });
+  const profileId = existingProfile?.id ?? 'igor-gigolaev';
+  const { skills, experience, projects, ...profile } = profileSeedData;
 
-  if (existingProfile) {
-    console.log('Profile already exists, skipping seed');
-    return;
-  }
-
-  await prisma.profile.create({
-    data: profileSeedData,
+  await prisma.profile.upsert({
+    where: { id: profileId },
+    create: {
+      id: profileId,
+      ...profile,
+      skills,
+      experience,
+      projects,
+    },
+    update: {
+      ...profile,
+      skills: {
+        deleteMany: {},
+        create: skills.create,
+      },
+      experience: {
+        deleteMany: {},
+        create: experience.create,
+      },
+      projects: {
+        deleteMany: {},
+        create: projects.create,
+      },
+    },
   });
 
-  console.log('Seed completed');
+  console.log(existingProfile ? 'Seed updated' : 'Seed completed');
 }
 
 main()
